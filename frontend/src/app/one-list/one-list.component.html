@@ -1,0 +1,28 @@
+<div header="Detay"  >
+  <div class="one-list">
+    <div class="">
+      <div class="panel panel-primary" >
+        <div class="panel-heading">
+          Yeni yapılacak
+        </div>
+        <div class="panel-body">
+          <form #f="ngForm" (ngSubmit)="svOneList(f.value)">
+            <div class="form-group">
+              <label class="control-label">İsim :</label>
+              <input class="form-control" ngModel="" type="text" name="name" required [(ngModel)]="task.name" />
+            </div>
+            <div class="form-group">
+              <label class="control-label">Açıklama :</label>
+              <input class="form-control" ngModel="" type="text" name="description" required [(ngModel)]="task.description" />
+            </div>
+            <button *ngIf="!task.id"  class="btn btn-success" [disabled]="!f.valid" (click)="svOneList(task)">Kaydet</button>
+            <button *ngIf="task.id"  class="btn btn-warningr" (click)="updateList(task)" [disabled]="!f.valid">Güncelle</button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

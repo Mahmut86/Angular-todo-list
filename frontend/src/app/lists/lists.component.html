@@ -1,0 +1,42 @@
+<div class="container-fluid" >
+  <div class="row"><h1> Yapılacaklar Listesi</h1></div>
+    <div class="row">
+
+      <div class="col-xs-1"></div>
+      <div class="col-xs-3">
+        <div class="list-group">
+          <div *ngFor="let task of tasks;let i = index">
+            <div class="list-group-item "  >
+            <a (click)="itemList(task.id)"  >
+       <!-- react-text: 11 --> {{task.name}}
+
+            </a>
+              <span aria-hidden="true" class="ui-button-icon-left badge-edit ui-clickable pi pi-times" (click)="eraseList(task.id)"></span>
+              <span aria-hidden="true" class="ui-button-icon-left ui-clickable badge-edit pi pi-pencil" (click)="uptList(task.id)"></span>
+            </div>
+
+          </div>
+        </div>
+        <div class="">
+          <form>
+            <div class="form-group "><input type="submit" class="btn btn-default" value="Yeni Liste Ekle"
+                                            style="float: left; margin-left: 5px;" (click)="newList()"  true>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+      <div class="col-xs-6">
+
+        <app-items></app-items>
+
+      </div>
+    </div>
+</div>
+<p-dialog header="Detay" [(visible)]="displayNewTaskList" [responsive]="true" showEffect="fade" [modal]="true" >
+  <app-one-list></app-one-list>
+</p-dialog>
+ <p-dialog header="Detay" [(visible)]="displayTaskDetail" [responsive]="true" showEffect="fade" [modal]="true" >
+  <app-one-list></app-one-list>
+</p-dialog>

@@ -1,0 +1,112 @@
+<div class="row">
+  <div class="col-xs-7"></div>
+
+  <div class="col-xs-5">
+
+    <input type="submit" class="btn btn-default add-item" value="Yeni İş Ekle" (click)="createOneItem()">
+  </div>
+</div>
+
+<br><br>
+<p-table  [globalFilterFields]="['Name','price','carType.name','nameOfCustomer']" #dt [columns]="cols" [value]="itemList"
+         selectionMode="single" [(selection)]="selectedItem"
+         (onRowSelect)="onRowSelect($event)" [paginator]="false" [rows]="15">
+
+  <ng-template pTemplate="header" let-columns>
+    <ul>
+      <li>
+
+        <div *ngFor="let col of columns" [pSortableColumn]="col.field" [ngSwitch]="col.field" class="item-caption">
+          <p-dropdown class="status" *ngSwitchCase="'status'" [options]="statusItem" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+
+          {{col.header}}
+        <p-sortIcon [field]="col.field"></p-sortIcon>
+      </div>
+      </li>
+    </ul>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <ul>
+      <li [pSelectableRow]="rowData">
+        <div data-id="2" draggable="true"  class="one-item">
+           <div *ngFor="let col of columns" class="item">
+          <div *ngIf="col.field !== 'dependencyItems' then content else other_content"></div>
+            <ng-template #content >   <span  >{{rowData[col.field]}}</span></ng-template>
+          <ng-template #other_content>
+            <span  (click)="addLinkScreen(rowData)" class="ui-button-icon-left  ui-clickable pi pi-plus"></span>
+          </ng-template>
+            </div>
+
+        </div>
+
+
+      </li>
+    </ul>
+
+  </ng-template>
+</p-table>
+<p-dialog header="detay" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+          [style]="{width: '400px'}">
+  <div class="ui-g ui-fluid" *ngIf="item">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="name">İsim</label>
+      </div>
+      <div class="ui-g-8">
+        <input [disabled]="true" pInputText id="name" [(ngModel)]="item.name"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="description">Açıklama</label>
+      </div>
+      <div class="ui-g-8">
+        <input [disabled]="true" pInputText id="description" [(ngModel)]="item.description"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="status">Durumu</label>
+      </div>
+      <div class="ui-g-8">
+        <p-dropdown [disabled]="true" required [options]="statusItem" id="status" [(ngModel)]="item.status"
+                    name="status"></p-dropdown>
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="fa fa-close" (click)="done(item.id)" label="Tamamlandı"></button>
+      <button type="button" pButton icon="fa fa-close" (click)="eraseOneItem(item.id)" label="Sil"></button>
+    </div>
+  </p-footer>
+</p-dialog>
+<p-dialog header="Detay" [(visible)]="displayNewItem" [responsive]="true" showEffect="fade" [modal]="true" >
+
+  <app-one-item></app-one-item></p-dialog>
+
+
+<p-sidebar [(visible)]="display" styleClass="ui-sidebar-sm" position="bottom">
+  {{warningMessage}}
+</p-sidebar>
+
+<p-dialog header="Bağlılık ekle" [(visible)]="displayaddLink" [responsive]="true" showEffect="fade"
+          [modal]="true"
+          [style]="{width: '400px'}">
+  <div class="ui-g ui-fluid" style="height: 300px">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="dependency">Yapılacaklar listesi</label>
+      </div>
+      <div class="ui-g-8">
+        <p-dropdown required [options]="dependencyItem" id="dependency" [(ngModel)]="dependencySelected"
+                    name="dependency"></p-dropdown>
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button"  class="btn btn-success" (click)="addLink()"  >Ekle</button>
+    </div>
+  </p-footer>
+</p-dialog>

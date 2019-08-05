@@ -1,0 +1,36 @@
+.badge-edit{
+  margin: 0 2px;
+  display: inline-block;
+  float: right;
+  min-width: 28px;
+  padding: 4px 1px;
+  font-size: 12px;
+  font-weight: normal;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #777777;
+  border-radius: 50%;
+  margin-top: -4px;}
+
+.list-group-item.active > .badge-edit, .nav-pills > .active > a > .badge-edit {
+  color: #337ab7;
+  background-color: #fff;
+}
+.list-group-item{
+  display: flex;
+}
+.list-group-item a{
+  color: #333333;
+ width: -webkit-fill-available;
+}
+.list-group-item.active a{
+  color: #fff;
+}
+.list-group-item:hover{
+  cursor: pointer;
+}
+h1{    text-align: center;
+  padding: 50px;}

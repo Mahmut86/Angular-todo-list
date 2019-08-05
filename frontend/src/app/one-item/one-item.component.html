@@ -1,0 +1,42 @@
+<div class="one-item">
+  <div class="">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        New Item
+      </div>
+      <div class="panel-body">
+        <form #f="ngForm" (ngSubmit)="svOneItem(f.value)">
+          <div class="form-group">
+            <label class="control-label">İsim :</label>
+            <input class="form-control" ngModel="" type="text" name="name" required [(ngModel)]="item.name"/>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Açıklama :</label>
+            <input class="form-control" ngModel="" type="text" name="description" required
+                   [(ngModel)]="item.description"/>
+          </div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label class="control-label">Durum :</label>
+      <p-dropdown  required [options]="statusItem" [(ngModel)]="item.status" name="status"></p-dropdown>
+    </div>
+
+  </div>
+  <div class="col-md-6">          <div class="form-group">
+    <label class="control-label">Tarih :</label>
+    <p-calendar  required dateFormat="dd.mm.yy " [(ngModel)]="deadline" showTime="true"
+                 hourFormat="24" name="deadline"></p-calendar>
+
+  </div>
+  </div>
+
+</div>
+          <button *ngIf="!item.id" type="submit" class="btn btn-success" [disabled]="!f.valid">Save</button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

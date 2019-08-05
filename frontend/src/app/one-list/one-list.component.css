@@ -1,0 +1,6 @@
+.one-list{
+  width: 600px;
+}
+.one-list .panel-primary > .panel-heading{
+  background: gray;
+}

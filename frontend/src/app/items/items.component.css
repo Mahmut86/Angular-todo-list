@@ -1,0 +1,22 @@
+.item,.item-caption{    /* margin: 0 2px; */
+  display: inline-block;
+  padding-left: 10px;
+  width: 19%;}
+.item-caption{    background: #fff;
+  border: 1px solid grey;
+  padding: 5px;}
+.one-item:hover{
+  background: #337ab7;
+  color: #fff;
+  cursor:pointer;
+}
+.status{
+  position: absolute;
+  top: -56px;
+  right: 150px;
+}
+.add-item{
+  position: absolute;
+  right: 57px;
+  top: -15px;
+}

@@ -1,0 +1,6 @@
+.one-item .panel-primary > .panel-heading{
+  background: gray;
+}
+.one-item{
+  width: 600px;
+}
